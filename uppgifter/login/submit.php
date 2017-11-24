@@ -1,6 +1,8 @@
 <?php
 $dbc = mysqli_connect("localhost", "root", "", "register");
 
+if(isset($_POST['mail']) && isset($_POST['password'])) { // funkar inte
+	
 $mail = htmlspecialchars($_POST['mail']);
 $password = htmlspecialchars($_POST['password']);	
 
@@ -12,6 +14,9 @@ if($row != null) {
 	echo "Successfully logged in!";
 } else {
 	echo "Fel mail eller lösenord, försök vänligen <a href='login.php'>här</a> igen!";
+}
+} else {	
+	echo "?";
 }
 
 ?>
