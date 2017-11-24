@@ -1,7 +1,6 @@
 <?php
 $dbc = mysqli_connect("localhost", "root", "", "register");
-
-if(isset($_SESSION['userid'])) {
+session_start();
 if(isset($_POST['mail']) && isset($_POST['password']) && $_POST['mail'] != "" && $_POST['password'] != "") {
 	
 	$mail = htmlspecialchars($_POST['mail']);
@@ -19,9 +18,5 @@ if(isset($_POST['mail']) && isset($_POST['password']) && $_POST['mail'] != "" &&
 	}
 } else {	
 	header("Location:login.php");
-}
-
-} else {
-	echo "Du är redan inloggad!";
 }
 ?>
