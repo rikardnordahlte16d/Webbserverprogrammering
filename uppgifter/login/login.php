@@ -16,7 +16,7 @@
 				</form>
 				';
 			} else {
-				echo "You're already logged in as " . $_SESSION['username'];
+				echo "Welcome " . $_SESSION['username'];
 				echo '<br><a href="login.php?logout=1">Log out</a>';
 				if(isset($_GET['logout'])) {
 					session_destroy();

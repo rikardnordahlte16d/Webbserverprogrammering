@@ -11,8 +11,8 @@ if(isset($_POST['mail']) && isset($_POST['password']) && $_POST['mail'] != "" &&
 	$row = mysqli_fetch_array($sql);
 
 	if($row != null) {
-		echo "Successfully logged in!";
 		$_SESSION['username'] = $row['username'];
+		header("Location:login.php");
 	} else {
 		echo "Fel mail eller lösenord, försök vänligen <a href='login.php'>här</a> igen!";
 	}
