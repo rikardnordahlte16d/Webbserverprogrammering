@@ -16,7 +16,7 @@
 				</form>
 				';
 			} else {
-				echo "Welcome " . $_SESSION['username'];
+				echo "Welcome <a href='edit.php'>" . $_SESSION['username'] . "</a>";
 				echo '<br><a href="login.php?logout=1">Log out</a>';
 				if(isset($_GET['logout'])) {
 					session_destroy();
