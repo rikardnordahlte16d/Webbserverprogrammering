@@ -5,10 +5,24 @@
 		<title>Login</title>
 	</head>
 	<body>
-		<form method="POST" action="submit.php">
-		Email: <input type="mail" style="margin-left:22px" name="mail"><br>
-			Lösenord: <input type="password" name="password"><br>
-			<input type="submit">
-		</form>
+		<?php 
+			session_start();
+			if(!isset($_SESSION['username'])) {
+				echo '
+				<form method="POST" action="submit.php">
+					Email: <input type="mail" style="margin-left:22px" name="mail"><br>
+					Lösenord: <input type="password" name="password"><br>
+					<input type="submit">
+				</form>
+				';
+			} else {
+				echo "You're already logged in as " . $_SESSION['username'];
+				echo '<br><a href="login.php?logout=1">Log out</a>';
+				if(isset($_GET['logout'])) {
+					session_destroy();
+					header("Location:login.php");
+				}
+			}
+		?>
 	</body>
 </html>
