@@ -9,6 +9,15 @@ if(isset($_POST['username']) && isset($_POST['full_name']) && isset($_POST['mail
 	$date = $_POST['date'];
 	$password = $_POST['password'];
 	
+	if(!mysqli_query($dbc, "UPDATE users SET username = '$username', full_name = '$full_name', mail = '$mail', date = '$date', password = '$password' WHERE username = '" . $_SESSION['username'] . "';")) {
+		echo mysqli_error($dbc);
+	} else {
+		unset($_SESSION['username']);
+		$_SESSION['username'] = $username;
+		echo "Changes saved!";
+		echo "<br><a href='login.php'>Home</a>";
+	}
+	
 } else {	
 	header("Location:login.php");
 }
