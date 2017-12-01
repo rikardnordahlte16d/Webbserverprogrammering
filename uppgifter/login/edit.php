@@ -7,7 +7,7 @@ if(isset($_SESSION['username'])) {
 	
 	$row = mysqli_fetch_array($data);
 	
-	echo 'Edit user<br>
+	echo 'Edit user<br><br>
 			<form method="POST" action="updateuser.php">
 				Användarnamn: <input type="text" name="username" value="' . $row["username"] . '"><br/>
 				Fullständigt namn: <input type="text" name="full_name" value="' . $row["full_name"] . '"><br/>
