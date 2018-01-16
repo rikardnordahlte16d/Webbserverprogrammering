@@ -4,13 +4,16 @@
 	</head>
 	
 	<body>
-		<button onmousedown="pressed()">Click</button>
-		<br><br>
-		<img onmouseover="bigger(this)" onmouseleave="smaller(this)" id="bild" src="bild.png" width=200 height=200>
-		<br><br>
-		<button onmousedown="hide()">Hide</button>
-		<button onmousedown="changeColor()">Change color</button>
-		<button onmousedown="clear()">Clear website</button>
+		<div id="page">
+			<button onmousedown="pressed()">Click</button>
+			<br><br>
+			<img onmouseover="bigger(this)" onmouseleave="smaller(this)" id="bild" src="bild.png" width=200 height=200>
+			<br><br>
+			<button onmousedown="hide()">Hide</button>
+			<button onmousedown="changeColor()">Change color</button>
+			<button onmousedown="clearPage()">Clear website</button>
+		</div>
+		<p id="cleartext"></p>
 		<script>
 			function pressed() {
 				alert("Pressed!");
@@ -33,6 +36,10 @@
 			}
 			function changeColor() {
 				document.body.style.backgroundColor = "red";
+			}
+			function clearPage() {
+				document.getElementById("page").style.display = "none";
+				document.getElementById("cleartext").innerHTML = "Page cleared!";
 			}
 		</script>
 	</body>
