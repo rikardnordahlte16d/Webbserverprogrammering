@@ -16,14 +16,26 @@
 			<br><br>
 			<img onmouseover="bigger(this)" onmouseleave="smaller(this)" id="bild" src="bild.png" width=200 height=200>
 			<br><br>
-			<button onmousedown="hide()">Hide</button>
+			<button onmousedown="hide()">Hide/Show</button>
 			<button onmousedown="changeColor()">Change color</button>
 			<button onmousedown="clearPage()">Clear website</button>
 			<br><br>
 			<div id="colorbox" onmousedown="changeColorBox()"></div>
+			<br><br>
+			
+			<div id="counter">
+				<p id="number">0</p>
+				<button onmousedown="increase(1)">1</button>
+				<button onmousedown="increase(10)">10</button>
+				<button onmousedown="increase(100)">100</button>
+				<br>
+				<button onmousedown="resetcounter()">Reset</button>
+			</div>
 		</div>
 		<p id="cleartext"></p>
+		
 		<script>
+			var counter = 0;
 			function pressed() {
 				alert("Pressed!");
 			}
@@ -44,7 +56,7 @@
 				}
 			}
 			function changeColor() {
-				document.body.style.backgroundColor = "red";
+				document.body.style.backgroundColor = "purple";
 			}
 			function clearPage() {
 				document.getElementById("page").style.display = "none";
@@ -59,6 +71,14 @@
 				} else if (box.style.backgroundColor == "green") {
 					box.style.backgroundColor = "red";
 				}
+			}
+			function increase(x) {
+				counter += x;
+				document.getElementById("number").innerHTML = counter;
+			}
+			function resetcounter() {
+				counter = 0;
+				document.getElementById("number").innerHTML = counter;
 			}
 		</script>
 	</body>
