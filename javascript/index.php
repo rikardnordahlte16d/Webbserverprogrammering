@@ -1,6 +1,13 @@
 <html>
 	<head>
 	<title>Javascript</title>
+	<style>
+		#colorbox {
+			width:50px;
+			height:50px;
+			background-color:red;
+		}
+	</style>
 	</head>
 	
 	<body>
@@ -12,6 +19,8 @@
 			<button onmousedown="hide()">Hide</button>
 			<button onmousedown="changeColor()">Change color</button>
 			<button onmousedown="clearPage()">Clear website</button>
+			<br><br>
+			<div id="colorbox" onmousedown="changeColorBox()"></div>
 		</div>
 		<p id="cleartext"></p>
 		<script>
@@ -40,6 +49,16 @@
 			function clearPage() {
 				document.getElementById("page").style.display = "none";
 				document.getElementById("cleartext").innerHTML = "Page cleared!";
+			}
+			function changeColorBox() {
+				var box = document.getElementById("colorbox");
+				if(box.style.backgroundColor == "" || box.style.backgroundColor == "red") {
+					box.style.backgroundColor = "blue";
+				} else if (box.style.backgroundColor == "blue") {
+					box.style.backgroundColor = "green";
+				} else if (box.style.backgroundColor == "green") {
+					box.style.backgroundColor = "red";
+				}
 			}
 		</script>
 	</body>
