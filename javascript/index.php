@@ -37,12 +37,12 @@
 			</div>
 			
 			<br><br>
-			<div id="moveDiv"></div>
+			<div id="moveBox" style="position:absolute;right:400px;width:200px;height:200px;background-color:red;"><div id="moveDiv" style="position:absolute;top:0px;right:0px;"></div></div>
 			<br>
-			<button onClick="move('up')">UP</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<button onClick="move('down')">DOWN</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<button onClick="move('right')">RIGHT</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<button onClick="move('left')">LEFT</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<button onClick="move('topleft')">Top Left</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<button onClick="move('bottomleft')" id="knappNer">Bottom Left</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<button onClick="move('topright')">Top Right</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<button onClick="move('bottomright')">Bottom Right</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			
 		</div>
 		<p id="cleartext"></p>
@@ -52,28 +52,31 @@
 			
 			function move(dir){
 				element = document.getElementById("moveDiv");
-
-				if(dir == "up"){
-					margin = element.style.marginTop;
-					margin = margin.replace("px","");
-					element.style.marginTop = margin - 1;
-				}
-				if(dir == "down"){
-					margin = element.style.marginTop;
-					margin = margin.replace("px","");
-					element.style.marginTop = margin + 1;
-				}
-				if(dir == "left"){
-					margin = element.style.marginLeft;
-					margin = margin.replace("px","");
-					element.style.marginLeft = margin - 1;
-				}
-				if(dir == "right"){
-					margin = element.style.marginLeft;
-					margin = margin.replace("px","");
-					element.style.marginLeft = margin + 1;
-				}
 				
+				if(dir == "topleft"){
+					element.style.left = "0px";
+					element.style.top = "0px";
+					element.style.right = "";
+					element.style.bottom = "";
+				}	
+				if(dir == "bottomleft"){
+					element.style.left = "0px";
+					element.style.top = "";
+					element.style.right = "";
+					element.style.bottom = "0px";
+				}
+				if(dir == "topright"){
+					element.style.left = "";
+					element.style.top = "0px";
+					element.style.right = "0px";
+					element.style.bottom = "";
+				}	
+				if(dir == "bottomright"){
+					element.style.left = "";
+					element.style.top = "";
+					element.style.right = "0px";
+					element.style.bottom = "0px";
+				}
 			}
 			
 			function pressed() {
