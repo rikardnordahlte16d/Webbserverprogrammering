@@ -1,0 +1,13 @@
+a:link {
+	text-decoration:none;
+	color:white;
+}
+#login_buttons > button {
+	border:none;
+	outline: 1px solid black;
+	background-color:rgba(0,0,0,0.5);
+	width:100px;
+	height:30px;
+	margin-right:10px;
+	color:white;
+}
