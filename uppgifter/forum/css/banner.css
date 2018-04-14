@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,700,700i');	
+
+body {
+	margin:0.5em;
+	font-family:'Open Sans', sans-serif;
+}
+.menuButton {
+	border:none;
+	padding:0;
+	border-radius:10px;
+	background-color:rgba(0,25,50,0.6);
+	width:100px;
+	height:35px;
+	text-decoration:none;
+	transition: background-color 0.25s;
+	color:white;
+}
+.menuButton:hover {
+	background-color:rgba(0,0,0,0.8);
+}
+#login {
+	float:right;
+	text-align:right;
+}
+#login_button {
+	margin-top:3px;
+	height:30px;
+	width:80px;
+}
+#loginField {
+	margin-top:14px;
+	border:1px solid rgba(0,25,50,0.6);
+	width:300px;
+	height:125px;
+	padding:10px;
+	margin-right:15px;
+}
+#wrong_password {
+	margin:auto;
+	display:table;
+	margin-right:500px;
+}
+#logo {
+	font-size:25px;
+	padding:5px;
+	display:inline;
+	border-radius:10px;
+	border:2px solid rgba(0,0,0,0.5);
+	margin-left:1px;
+	color:rgba(0,25,50,0.6);
+	background-color:rgba(0,25,0,0.1);
+	transition: background-color 0.25s;	
+}
+#logo:hover {
+	background-color:rgba(0,0,0,0.4);
+}
+#register {
+	margin:auto;
+	display:table;
+}
+.link {
+	text-decoration:none;
+	float:right;
+	margin-right:5px;
+	font-size:20px;
+	color:rgba(0,0,0,0.5);
+	width:50;
+	height:50;
+	transition: color 0.5s;
+	margin-left:25px;
+	margin-top:5px;
+}
+.link:hover{
+	color:rgba(0,0,0,1);
+	text-decoration:underline;
+}
+hr {
+	margin-top:15px;
+}
+
