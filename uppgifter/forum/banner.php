@@ -69,6 +69,12 @@
 				}
 			}
 		</script>
-		
+		<?php
+			$dbc = mysqli_connect("localhost", "root", "", "forum");
+			
+			if(!isset($_SESSION['username'])) {
+				return;
+			}
+		?>
 	</body>
 </html>

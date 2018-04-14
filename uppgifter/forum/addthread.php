@@ -1,8 +1,5 @@
 <?php
 include("banner.php");
-if(!isset($_SESSION['username'])) {
-	return;
-}
 ?>
 <html>
 	<body>

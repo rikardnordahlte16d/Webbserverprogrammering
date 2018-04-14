@@ -5,7 +5,6 @@
 <a href="<?php echo 'addthread.php?id=' . $_GET["id"]; ?>"><span id="plus">+</span></a>
 <table>
 <?php
-	$dbc = mysqli_connect("localhost", "root", "", "forum");
 	$id = $_GET['id'];
 	$result = mysqli_query($dbc, "SELECT * FROM threads WHERE forum_id=" . $id . ";");
 

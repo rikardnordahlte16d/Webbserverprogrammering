@@ -1,16 +1,12 @@
 <?php
 include("banner.php");
 
-if(!isset($_SESSION['username'])) {
-	return;
-}
 ?>
 <link rel="stylesheet" href="css/index.css"/>
 <a href="addforum.php"><span id="plus">+</span></a>
 
 <table>
 <?php
-	$dbc = mysqli_connect("localhost", "root", "", "forum");
 	mysqli_query($dbc, "SET NAMES utf8");
 
 	$sql = mysqli_query($dbc, "SELECT * FROM forums");
