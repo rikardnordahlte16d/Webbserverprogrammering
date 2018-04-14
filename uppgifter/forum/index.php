@@ -3,7 +3,7 @@ include("banner.php");
 
 ?>
 <link rel="stylesheet" href="css/index.css"/>
-<a href="addforum.php"><span id="plus">+</span></a>
+<?php if($logged_in) {?><a href="addforum.php"><span id="plus">+</span></a><?php } ?>
 
 <table>
 <?php

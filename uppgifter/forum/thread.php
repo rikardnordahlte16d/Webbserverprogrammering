@@ -15,7 +15,18 @@
 ?>
 <h3>Comment:</h3>
 <form method="POST" action="comment.php?id=<?php echo $_GET['id']; ?>">
-	<textarea cols="50" rows="10" name="text"></textarea><br>
+	<?php
+	if(isset($_SESSION['username'])) {
+	?>
+		<textarea cols="50" rows="10" name="text"></textarea>
+	<?php
+	} else {
+	?>
+		<textarea cols="50" rows="10" name="text" style="display:inline" disabled></textarea>
+		<br><p style="display:inline; margin:none;">Du måste <a href="#" onclick="showLogin()">logga in</a> för att skriva kommentarer!</p><br>
+	<?php
+	}
+	?><br>
 	<input type="submit" class="menuButton" value="Comment!"/>
 </form>
 <br>

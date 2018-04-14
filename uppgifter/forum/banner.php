@@ -17,6 +17,9 @@
 				<div id="login_field" style="display:none">
 					Användarnamn: <input type="text" name="username" id="username"/><br/>
 					Lösenord: <input type="password" name="password" id="password"/><br/>
+					
+					<input type="text" value="<?php echo "$_SERVER[REQUEST_URI]"; ?>" name="url" style="display:none"> <!-- Länk till hemsidan man var på innan inloggning -->
+					
 					<input type="submit" value="Logga in!" id="login_button" class="menuButton"><br/>
 					<input type="checkbox"/> Kom ihåg mig &nbsp&nbsp&nbsp<a href="resetpassword.php">Glömt lösenordet?</a>
 				</div>
@@ -60,9 +63,8 @@
 				login_field = document.getElementById("login_field");
 				if(login_field.style.display == "none") {
 					login_field.style.display = "inline";
-					document.getElementById("username").focus();
 					document.getElementById("loginField").style.display = "table";
-					
+					document.getElementById("username").focus();
 				} else if (login_field.style.display == "inline") {
 					login_field.style.display = "none";
 					document.getElementById("loginField").style.display = "none";
@@ -71,10 +73,7 @@
 		</script>
 		<?php
 			$dbc = mysqli_connect("localhost", "root", "", "forum");
-			
-			if(!isset($_SESSION['username'])) {
-				return;
-			}
+			$logged_in = isset($_SESSION['username']);
 		?>
 	</body>
 </html>

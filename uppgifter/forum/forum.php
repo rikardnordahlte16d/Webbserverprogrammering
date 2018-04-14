@@ -2,7 +2,7 @@
 	include("banner.php");
 ?>
 <link rel="stylesheet" href="css/index.css"/>
-<a href="<?php echo 'addthread.php?id=' . $_GET["id"]; ?>"><span id="plus">+</span></a>
+<?php if($logged_in) { ?><a href="<?php echo 'addthread.php?id=' . $_GET["id"]; ?>"><span id="plus">+</span></a><?php } ?>
 <table>
 <?php
 	$id = $_GET['id'];
