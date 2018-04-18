@@ -77,4 +77,13 @@ body {
 hr {
 	margin-top:15px;
 }
+#notification_field {
+	width:600px;
+	height:400px;
+	background-color:rgb(180,180,180);
+	margin-top:49px;
+	position:absolute;
+	right:2px;
+	text-align:left;
+}
 

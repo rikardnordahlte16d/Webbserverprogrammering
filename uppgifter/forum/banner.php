@@ -1,3 +1,7 @@
+<?php
+session_start();
+$dbc = mysqli_connect("localhost", "root", "", "forum");
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -24,9 +28,40 @@
 					<input type="checkbox"/> Kom ihåg mig &nbsp&nbsp&nbsp<a href="resetpassword.php">Glömt lösenordet?</a>
 				</div>
 			</form>
+				<div id="notification_field" style="display:none;" onmouseleave="showNotifications();">
+				<?php
+					$result = mysqli_query($dbc, "SELECT * FROM notifications WHERE user_to_id=" . $_SESSION['id'] . " ORDER BY id DESC");
+					while($row = mysqli_fetch_array($result)) {
+						
+						$user_result = mysqli_query($dbc, "SELECT * FROM users WHERE id=" . $row['user_from_id']);
+						$user_row = mysqli_fetch_array($user_result);
+						
+						$thread_result = mysqli_query($dbc, "SELECT * FROM threads WHERE id=" . $row['thread_id']);
+						$thread_row = mysqli_fetch_array($thread_result);
+						
+						if(substr($row['text'], 0, 2) != "@@" && strlen($row['text']) > 15) {
+							$row['text'] = substr($row['text'], 0, 15) . "...";
+						} else if (substr($row['text'], 0, 2) == "@@" && strlen($row['text']) > 15 + strlen($_SESSION['username'])) {
+							$row['text'] = substr($row['text'], 0, strlen($_SESSION['username']) + 19) . "...";
+						}
+						
+						if(strlen($thread_row['name']) > 15) {
+							$thread_row['name'] = substr($thread_row['name'], 0, 15) . "...";
+						}
+						
+						$duplication = 0; //Annars får man dubletter notiser om man har en tråd och nån taggar nån i den
+						
+						if(substr($row['text'], 0, 2) != "@@") {
+							echo "<a href='profile.php?id=" . $user_row['id'] . "'>" . $user_row['username'] . "</a> kommentera &#34;" . $row['text'] . "&#34; i din tråd <a href='thread.php?id=" . $thread_row['id'] . "'>" . $thread_row['name'] . "</a><br>"; 
+							$duplication = 1;
+						} else {
+							if($duplication == 0) $row['text'] = substr($row['text'], strlen($_SESSION['username'])+2);echo "<a href='profile.php?id=" . $user_row['id'] . "'>" . $user_row['username'] . "</a> taggade dig i en kommentar &#34;" . substr($row['text'], 1) . "&#34; i tråden <a href='thread.php?id=" . $thread_row['id'] . "'>" . $thread_row['name'] . "</a><br>";
+						}
+					}
+				?>
+				</div>
 		</div>
 		<?php
-		session_start();
 		if(isset($_SESSION['username'])) {
 		?>
 				<script>
@@ -35,7 +70,14 @@
 				</script>
 				<?php
 				echo '<a href="index.php?logout=1" class="link" id="logout">Logga ut</a>';
+				
+				$result = mysqli_query($dbc, "SELECT count(user_to_id) FROM notifications WHERE user_to_id=" . $_SESSION['id']);
+				$row = mysqli_fetch_array($result);
+				$notifications = "(" . $row[0] . ")"; 
+				
+				if($notifications != "(0)") echo '<span onmouseover="showNotifications();" class="link" id="notifications_link">' . $notifications . '</span>';
 				echo '<a href="profile.php?id=' . $_SESSION['id'] . '" class="link" id="profile">' . $_SESSION['username'] . '</a>';
+				
 				if(isset($_GET['logout'])) {
 					session_destroy();
 					header("Location:index.php");
@@ -70,9 +112,16 @@
 					document.getElementById("loginField").style.display = "none";
 				}
 			}
+			function showNotifications() {
+				notification_field = document.getElementById("notification_field");
+				if(notification_field.style.display == "none") {
+					notification_field.style.display = "inline";
+				} else if (notification_field.style.display == "inline") {
+					notification_field.style.display = "none";
+				}
+			}
 		</script>
 		<?php
-			$dbc = mysqli_connect("localhost", "root", "", "forum");
 			$logged_in = isset($_SESSION['username']);
 		?>
 	</body>

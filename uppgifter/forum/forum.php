@@ -6,13 +6,15 @@
 <table>
 <?php
 	$id = $_GET['id'];
-	$result = mysqli_query($dbc, "SELECT * FROM threads WHERE forum_id=" . $id . ";");
-
-
+	$result = mysqli_query($dbc, "SELECT * FROM threads WHERE forum_id=" . $id . " ORDER BY thread_date DESC");
+	
+	$result_count = mysqli_query($dbc, "SELECT count(id) FROM threads WHERE forum_id=" . $id);
+	$result_count_row = mysqlI_fetch_array($result_count);
+	
 	$forum_result = mysqli_query($dbc, "SELECT * FROM forums WHERE id='" . $id . "';");
 	$forum_row = mysqli_fetch_array($forum_result);
 
-	echo "<center><span id='forum_name'>" . $forum_row['name'] . "</span></center><hr width='50%'><br>";
+	echo "<center><span id='forum_name'>" . $forum_row['name'] . " (" . $result_count_row[0] . " trådar gjorde i detta forum)</span></center><hr width='50%'><br>";
 	while($row = mysqli_fetch_array($result)) {
 		$user_result = mysqli_query($dbc, "SELECT id,username FROM users WHERE id=" . $row['user_id'] . ";");
 		$user_row = mysqli_fetch_array($user_result);

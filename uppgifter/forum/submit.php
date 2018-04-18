@@ -15,7 +15,7 @@
 	if(!mysqli_query($dbc, 'INSERT INTO users (username, name, password, mail, birthday) VALUES ("' . $username . '", "' . $name . '", "' . $password . '", "' . $mail . '", "' . $birthday . '")')) {
 		echo mysqli_error($dbc);
 	} else {
-		echo "Registreringen lyckades!";
+		header("location:index.php");
 	}
 	
 ?>
