@@ -20,6 +20,7 @@ if(isset($_POST['username']) && isset($_POST['password']) && $_POST['username'] 
 		header("location:index.php?password=1&username=" . $username);
 	}
 } else {	
-	//header("location:index.php?loggedin=1");
+	header("location:index.php");
 }
 ?>
+

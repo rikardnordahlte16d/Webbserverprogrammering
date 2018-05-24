@@ -2,8 +2,9 @@
 include("banner.php");
 
 ?>
+
 <link rel="stylesheet" href="css/index.css"/>
-<?php if($logged_in) {?><a href="addforum.php"><span id="plus">+</span></a><?php } ?>
+<?php if($logged_in && strtolower($_SESSION['username']) == "admin") {?><a href="addforum.php"><span id="plus">+</span></a><?php } ?>
 
 <table>
 <?php
@@ -37,3 +38,4 @@ include("banner.php");
 	}	
 ?>
 </table>
+

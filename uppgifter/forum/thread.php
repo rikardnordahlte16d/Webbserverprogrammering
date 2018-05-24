@@ -7,9 +7,7 @@
 		$user_result = mysqli_fetch_array($user_query);
 		$forum_query = mysqli_query($dbc, "SELECT * FROM forums WHERE id=" . $row['forum_id']);
 		$forum_result = mysqli_fetch_array($forum_query);
-		$comment_count_query = mysqli_query($dbc, "SELECT count(id) FROM comments WHERE thread_id="$row['id']);
-		$comment_count_result = mysqli_fetch_array($comment_count_query);
-
+		
 		echo "inlagd av <a href='profile.php?id=" . $row['user_id'] . "'>" . $user_result['username'] . "</a> i <a href='forum.php?id=" . $row['forum_id'] . "'>" . $forum_result['name'] . "</a><br>";
 		echo "<hr width='25%' align='left'>";
 		echo $row['name'];
@@ -17,7 +15,7 @@
 		echo $row['text'];
 	}
 ?>
-<h3>Kommentera:</h3>
+<h3>Kommentera: </h3>
 <form method="POST" action="comment.php?id=<?php echo $_GET['id']; ?>">
 	<?php
 	if(isset($_SESSION['username'])) {
@@ -31,10 +29,16 @@
 	<?php
 	}
 	?><br>
-	<input type="submit" class="menuButton" value="Kommentera!"/>
+	<input type="submit" class="menuButton" value="Kommentera!"/> 
+<?php 
+$comment_count_query = mysqli_query($dbc, "SELECT count(id) FROM posts WHERE thread_id=" . $_GET['id']);
+$comment_count_result = mysqli_fetch_array($comment_count_query);
+echo " (" . $comment_count_result[0] . " kommentarerer)";
+?>
 </form>
 <br>
-<?php
+
+<?php	
 	$dbc = mysqli_connect("localhost", "root", "", "forum");
 	$query = mysqli_query($dbc, "SELECT * FROM posts WHERE thread_id=" . $_GET['id'] . " ORDER BY upvotes DESC, post_date DESC");
 	while($row = mysqli_fetch_array($query)) {
